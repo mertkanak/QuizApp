@@ -4,11 +4,17 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 
-class QuizQuestionsActivity : AppCompatActivity() {
+class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
+
+    private var mCurrentPosition: Int = 1
+    private var mQuestionList: ArrayList<Question>? = null
+    private var mSelectedOptionPosition: Int = 0
+
 
     //Create global variables for the views in the layout
     private var progressBar: ProgressBar?=null
@@ -32,10 +38,14 @@ class QuizQuestionsActivity : AppCompatActivity() {
         tvOptionThree = findViewById(R.id.tv_option_three)
         tvOptionFour = findViewById(R.id.tv_option_four)
 
+        setQuestion()
+
+    }
+    private fun setQuestion() {
         val questionsList = Constants.getQuestions()
         Log.i("QuestionsList size is", "${questionsList.size}")
 
-        for(i in questionsList){
+        for (i in questionsList) {
             Log.e("Questions", i.question)
         }
 
@@ -49,6 +59,9 @@ class QuizQuestionsActivity : AppCompatActivity() {
         tvOptionTwo?.text = question.optionTwo
         tvOptionThree?.text = question.optionThree
         tvOptionFour?.text = question.optionFour
+    }
 
+    override fun onClick(p0: View?) {
+        TODO("Not yet implemented")
     }
 }
